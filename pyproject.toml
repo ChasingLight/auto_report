@@ -1,0 +1,9 @@
+[project]
+name = "auto-report"
+version = "0.1.0"
+description = "Add your description here"
+requires-python = ">=3.12"
+dependencies = [
+    "openai>=1.0.0",
+    "pyyaml>=6.0",
+]

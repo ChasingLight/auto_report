@@ -1,0 +1,65 @@
+# 周报自动化系统配置文件示例
+# 复制为 config.yaml 并填入真实值
+
+# Git 仓库配置
+git:
+  repos:
+    - name: qwen_all
+      path: /path/to/qwen_all
+    - name: dify
+      path: /path/to/dify
+    - name: ai_edu_assistant
+      path: /path/to/ai_edu_assistant
+  # diff 截断长度（单个 commit 的 diff 最大字符数）
+  max_diff_length: 5000
+  # 作者过滤（git 用户名），只采集该作者的 commit，为空则不过滤
+  author: your_git_username
+
+# 本地 MD 知识库配置
+knowledge_base:
+  root_path: /path/to/your/knowledge_base
+  # 文件匹配模式
+  pattern: "**/*.md"
+  # 无 frontmatter 时的兜底策略
+  fallback_to_mtime: true
+
+# LLM 配置（OpenAI 兼容格式，支持千问/DeepSeek/智谱）
+llm:
+  provider: qwen
+  providers:
+    deepseek:
+      api_key: sk-your-deepseek-key
+      base_url: https://api.deepseek.com/v1
+      model: deepseek-v4-pro
+    qwen:
+      api_key: sk-your-qwen-key
+      base_url: https://dashscope.aliyuncs.com/compatible-mode/v1
+      model: qwen-plus
+    zhipu:
+      api_key: your-zhipu-key
+      base_url: https://open.bigmodel.cn/api/paas/v4
+      model: glm-5.1
+
+# 周报输出配置
+output:
+  dir: ./output
+  # 生成后自动打开编辑器
+  auto_open: true
+  # 编辑器命令，留空则使用系统默认
+  editor: code
+
+# 定时配置
+schedule:
+  # 每周五 17:30（CST）
+  day: friday
+  time: "17:30"
+
+# 周报模板配置
+report_template:
+  sections:
+    - key: highlights
+      label: "本周工作重点"
+      required: true
+    - key: details
+      label: "本周工作详情"
+      required: true
